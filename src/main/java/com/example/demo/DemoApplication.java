@@ -6,9 +6,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.scheduling.annotation.EnableAsync;
 
 import java.util.stream.IntStream;
 
+@EnableAsync
 @SpringBootApplication
 public class DemoApplication {
 
@@ -30,7 +32,7 @@ public class DemoApplication {
                         kafkaTemplate.send("test-topic", String.valueOf(data));
 						try {
 							System.out.println("Sleeping");
-							Thread.sleep(1000);
+							Thread.sleep(10000);
 						} catch (InterruptedException e) {
 							e.printStackTrace();
 						}
